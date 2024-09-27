@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>סימולציית פישינג חינוכית - אל תזינו מידע אמיתי!</title>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            font-family: 'Google Sans','Noto Sans Hebrew','Arial',sans-serif;
+            background-color: #fff;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+        .login-container {
+            width: 448px;
+            padding: 48px 40px 36px;
+            border: 1px solid #dadce0;
+            border-radius: 8px;
+            text-align: right;
+        }
+        .logo {
+            width: 75px;
+            height: 24px;
+            margin-bottom: 16px;
+            float: right;
+        }
+        h1 {
+            font-size: 24px;
+            font-weight: 400;
+            margin-bottom: 8px;
+        }
+        .subtitle {
+            font-size: 16px;
+            font-weight: 400;
+            margin-bottom: 32px;
+            color: #202124;
+        }
+        input {
+            width: 100%;
+            height: 54px;
+            font-size: 16px;
+            padding: 13px 15px;
+            border: 1px solid #dadce0;
+            border-radius: 4px;
+            margin-bottom: 8px;
+            box-sizing: border-box;
+        }
+        .form-links {
+            text-align: right;
+            margin: 8px 0 16px;
+        }
+        .form-links a {
+            color: #1a73e8;
+            font-weight: 500;
+            font-size: 14px;
+            text-decoration: none;
+        }
+        button {
+            background-color: #1a73e8;
+            color: #fff;
+            border: none;
+            padding: 0 24px;
+            height: 36px;
+            font-size: 14px;
+            font-weight: 500;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 16px;
+        }
+        button:hover {
+            background-color: #287ae6;
+            box-shadow: 0 1px 2px 0 rgba(66,133,244,0.3),0 1px 3px 1px rgba(66,133,244,0.15);
+        }
+        .buttons {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .create-account {
+            font-size: 14px;
+            color: #1a73e8;
+            font-weight: 500;
+            text-decoration: none;
+        }
+        .not-your-computer {
+            font-size: 14px;
+            margin-top: 24px;
+            color: #5f6368;
+        }
+        .not-your-computer a {
+            color: #1a73e8;
+            text-decoration: none;
+        }
+        #password-screen, #phishing-alert {
+            display: none;
+        }
+        .user-email {
+            font-weight: bold;
+            margin-bottom: 16px;
+        }
+        .phishing-message {
+            color: red;
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="login-container">
+            <img src="https://kedemcenter.co.il/wp-content/uploads/2023/02/google-76518__340.jpg" alt="Google" class="logo">
+            <div id="email-screen">
+                <h1>כניסה</h1>
+                <p class="subtitle">מהו חשבון Google שלך</p>
+                <input type="email" id="email" placeholder="כתובת אימייל או מספר טלפון" required>
+                <div class="form-links">
+                    <a href="#">שכחת את כתובת האימייל?</a>
+                </div>
+                <div class="not-your-computer">
+                    זה לא המחשב שלך? מומלץ להשתמש במצב אורח כדי להיכנס לחשבון בפרטיות. <a href="#">מידע נוסף על השימוש במצב אורח</a>
+                </div>
+                <div class="buttons">
+                    <a href="#" class="create-account">חשבון חדש</a>
+                    <button onclick="showPasswordScreen()">הבא</button>
+                </div>
+            </div>
+            <div id="password-screen">
+                <h1>ברוכים הבאים</h1>
+                <div class="user-email"></div>
+                <input type="password" id="password" placeholder="הקלידו את הסיסמה שלכם" required>
+                <div class="form-links">
+                    <a href="#">שכחת את הסיסמה?</a>
+                </div>
+                <div class="buttons">
+                    <button onclick="showPhishingAlert()">הבא</button>
+                </div>
+            </div>
+            <div id="phishing-alert">
+                <h1>התראת אבטחה</h1>
+                <p class="phishing-message">אכלת אותה! זה היה פישינג. הסיסמה שלך הייתה נגנבת כעת.</p>
+                <p>זוהי הדגמה חינוכית. לעולם אל תזינו סיסמאות אמיתיות באתרים לא מוכרים או קישורים חשודים.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showPasswordScreen() {
+            console.log("showPasswordScreen function called");
+            const email = document.getElementById('email').value;
+            if (email) {
+                document.getElementById('email-screen').style.display = 'none';
+                document.getElementById('password-screen').style.display = 'block';
+                document.querySelector('.user-email').textContent = email;
+            }
+        }
+
+        function showPhishingAlert() {
+            console.log("showPhishingAlert function called");
+            const password = document.getElementById('password').value;
+            if (password) {
+                document.getElementById('password-screen').style.display = 'none';
+                document.getElementById('phishing-alert').style.display = 'block';
+            }
+        }
+    </script>
+</body>
+</html>
